@@ -85,48 +85,79 @@ fit_NNGP = function(y,X_use,is_obs, times,hours, S, burn, mod_choice, thin=1, tu
                 ((pi * (q[2] + q[3]) - pi^2 * q[4] ) > -1.0) ,TRUE,FALSE)
     }
     
-  } else if(mod_choice == 5){
-    
-    p = 5
-    cand_var = diag(c(1,10,1,1,1))/50
-    covs = numeric(p)
-    covs[1] = 10 ; covs[2] = 100 ;covs[3] = 1 ;covs[4] = 1/2; covs[5] = 1/2 
-    
-    allow_prop = function(q){
-      ifelse( all(q[c(1,2,3,4,5)] > 0) & (q[5] <= 1) ,TRUE,FALSE)
-    }
-    
-  } else if(mod_choice == 6){
+  } else   if(mod_choice == 5){  ## old 2
     
     p = 4
-    cand_var = diag(c(1,10,1,1))/50
+    cand_var = diag(c(0.01,0.01,0.1,0.1))/100
     covs = numeric(p)
-    covs[1] = 10 ; covs[2] = 100 ;covs[3] = 1 ;covs[4] = 1/2
+    covs[1] = 5 ; covs[2] = 6 ;covs[3] = .005
+    covs[4] = 0.9
     
     allow_prop = function(q){
-      ifelse( all(q[c(1,2,3,4)] > 0) & (q[4] <= 1) ,TRUE,FALSE)
+      ifelse( all(q[c(1,2,3,4)] > 0) & q[2] < 100 & q[c(4)] <= 1,TRUE,FALSE)
+    }
+    
+  } else if(mod_choice == 6){ ## old 3
+    
+    p = 3
+    cand_var = diag(c(0.1,0.1,0.1))/100
+    covs = numeric(p)
+    covs[1] = 3 ; covs[2] = 3 ;covs[3] = 1 
+    
+    allow_prop = function(q){
+      ifelse( all(q[c(1,2,3)] > 0) & q[2] < 100 & q[c(3)] <= 2,TRUE,FALSE)
+    }
+    
+    
+  } else if(mod_choice == 7){
+    
+    p = 5
+    cand_var = diag(c(.1,.1,.1,.1,.1))/100
+    covs = numeric(p)
+    covs[1] = 5 ; covs[2] = 1 ;covs[3] = 1 ;covs[4] = 0.1 
+    covs[5] = 1
+    
+    allow_prop = function(q){
+      ifelse( all(q[c(1,2,3,4,5)] > 0) &
+                q[1] < 100 &
+                (q[4] <= q[2]* q[3])  & 
+                ((pi * (q[2] + q[3]) - pi^2 * q[4] ) > -1.0) ,TRUE,FALSE)
+    }
+    
+  } else if(mod_choice == 8){
+    
+    p = 5
+    cand_var = diag(c(.1,.1,.1,.1,.1))/100
+    covs = numeric(p)
+    covs[1] = 10 ; covs[2] = 100 ;covs[3] = 1 ;covs[4] = 1/2
+    covs[5] = 1/2
+    
+    allow_prop = function(q){
+      ifelse( all(q[c(1,2,3,4,5)] > 0) & q[2] < 100 &(q[5] <= 1) ,TRUE,FALSE)
     }
     
   } else if(mod_choice == 9){
     
     p = 4
-    cand_var = diag(c(0.01,0.01,0.1,1))/10
+    cand_var = diag(c(0.1,0.1,0.1,.1))/100
     covs = numeric(p)
-    covs[1] =0.1 ; covs[2] = 0.1 ;covs[3] = 1 ;covs[4] = 100
+    covs[1] = 0.3 ; covs[2] = 0.1 ;covs[3] = 1 
+    covs[4] = 20
     
     allow_prop = function(q){
-      ifelse( all(q[c(1,2,3,4)] > 0) & sum(q[c(1,2)]) < 1 ,TRUE,FALSE)
+      ifelse( all(q[c(1,2,3,4)] > 0) & q[4] < 100 & sum(q[c(1,2)]) < 1 ,TRUE,FALSE)
     }
     
   }else if(mod_choice == 10){
     
     p = 4
-    cand_var = diag(c(0.01,0.01,0.1,1))/10
+    cand_var = diag(c(0.1,0.1,0.1,.1))/100
     covs = numeric(p)
-    covs[1] = 1 ; covs[2] = 1 ;covs[3] = 1 ;covs[4] = 100
+    covs[1] = 3 ; covs[2] = 3 ;covs[3] = 2 
+    covs[4] = 3
     
     allow_prop = function(q){
-      ifelse( all(q[c(1,2,3,4)] > 0) ,TRUE,FALSE)
+      ifelse( all(q[4] < 100 & q[c(1,2,3,4)] > 0) ,TRUE,FALSE)
     }
     
   }

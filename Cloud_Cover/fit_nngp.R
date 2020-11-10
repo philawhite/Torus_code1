@@ -10,7 +10,7 @@ fit_NNGP = function(y, NN, times,lon, lat, S, is_obs, burn, mod_choice, thin=1, 
     covs[4] = 0.9
     
     allow_prop = function(q){
-      ifelse( all(q[c(1,2,3,4)] > 0) & q[2] < 100 & q[c(4)] <= 1,TRUE,FALSE)
+      ifelse( all(q[c(1,2,3,4)] > 0) & q[2] < 12 & q[c(4)] <= 1,TRUE,FALSE)
     }
     
   } else if(mod_choice == 6){ ## old 3
@@ -21,7 +21,7 @@ fit_NNGP = function(y, NN, times,lon, lat, S, is_obs, burn, mod_choice, thin=1, 
     covs[1] = 3 ; covs[2] = 3 ;covs[3] = 1 
     
     allow_prop = function(q){
-      ifelse( all(q[c(1,2,3)] > 0) & q[2] < 100 & q[c(3)] <= 2,TRUE,FALSE)
+      ifelse( all(q[c(1,2,3)] > 0) & q[2] < 12 & q[c(3)] <= 2,TRUE,FALSE)
     }
     
     
@@ -35,7 +35,7 @@ fit_NNGP = function(y, NN, times,lon, lat, S, is_obs, burn, mod_choice, thin=1, 
     
     allow_prop = function(q){
       ifelse( all(q[c(1,2,3,4,5)] > 0) &
-                q[1] < 100 &
+                q[1] < 12 &
                 (q[4] <= q[2]* q[3])  & 
                 ((pi * (q[2] + q[3]) - pi^2 * q[4] ) > -1.0) ,TRUE,FALSE)
     }
@@ -49,7 +49,7 @@ fit_NNGP = function(y, NN, times,lon, lat, S, is_obs, burn, mod_choice, thin=1, 
     covs[5] = 1/2
     
     allow_prop = function(q){
-      ifelse( all(q[c(1,2,3,4,5)] > 0) & q[2] < 100 &(q[5] <= 1) ,TRUE,FALSE)
+      ifelse( all(q[c(1,2,3,4,5)] > 0) & q[2] < 12 &(q[5] <= 1) ,TRUE,FALSE)
     }
     
   } else if(mod_choice == 9){
@@ -61,7 +61,7 @@ fit_NNGP = function(y, NN, times,lon, lat, S, is_obs, burn, mod_choice, thin=1, 
     covs[4] = 20
     
     allow_prop = function(q){
-      ifelse( all(q[c(1,2,3,4)] > 0) & q[4] < 100 & sum(q[c(1,2)]) < 1 ,TRUE,FALSE)
+      ifelse( all(q[c(1,2,3,4)] > 0) & q[4] < 12 & sum(q[c(1,2)]) < 1 ,TRUE,FALSE)
     }
     
   }else if(mod_choice == 10){
@@ -73,7 +73,7 @@ fit_NNGP = function(y, NN, times,lon, lat, S, is_obs, burn, mod_choice, thin=1, 
     covs[4] = 3
     
     allow_prop = function(q){
-      ifelse( all(q[4] < 100 & q[c(1,2,3,4)] > 0) ,TRUE,FALSE)
+      ifelse( all(q[4] < 12 & q[c(1,2,3,4)] > 0) ,TRUE,FALSE)
     }
     
   }
