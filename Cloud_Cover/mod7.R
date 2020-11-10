@@ -25,7 +25,7 @@ in_function = function(x,val,alp=0.1){
   1*(val <= CI[2] & val >= CI[1])
 }
 
-mod_choice = 8
+mod_choice = 7
 
 NN = NNarray[,-1]
 
@@ -37,4 +37,4 @@ mod_out = fit_NNGP(dat_ordered$tcdc, NN, dat_ordered$time,
                    S = S, is_obs = rep(TRUE,n), burn = burn, 
                    mod_choice = mod_choice, thin=1, tune=100)
 
-save.image("mod8.RData")
+save.image("mod7.RData")
