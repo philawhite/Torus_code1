@@ -5,7 +5,7 @@ library(fields)
 library(MASS)
 
 rm(list = ls())
-try(setwd("C:/Users/philaw/Box/Research/Porcu/Torus/code/wind_backup/dic_comp"),silent = TRUE)
+# try(setwd("C:/Users/philaw/Box/Research/Porcu/Torus/code/wind_backup/dic_comp"),silent = TRUE)
 
 # Rcpp::sourceCpp("nngp_circle.cpp")
 
@@ -578,4 +578,4 @@ for(i in 2:(reps + burn)){
 
 rm(list=setdiff(ls(), c("like_save","b","sig2","tau2","beta_reg") ))
 
-save.image("final.RData")
+# save.image("final.RData")

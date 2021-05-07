@@ -9,7 +9,6 @@ library(Matrix)
 library(MCMCpack)
 
 rm(list = ls())
-try(setwd("C:/Users/philaw/Box/Research/Porcu/Torus/code/cloud_paper1/dic_comp"),silent = TRUE)
 
 # Rcpp::sourceCpp("nngp_circle.cpp")
 
@@ -663,6 +662,6 @@ for(i in 2:(reps + burn)){
 rm(list=setdiff(ls(), c("b","phi","phi_beta","tau2","sig2",
                         "beta_reg","beta_tot","V_reg","like_save")))
 
-
-save.image("final.RData")
+# 
+# save.image("final.RData")
 
