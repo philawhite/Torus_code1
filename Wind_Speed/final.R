@@ -346,8 +346,8 @@ q = ncol(X)
 ############################################################# 
 
 
-reps = 2e4
-burn = 5e4
+reps = 5e4
+burn = 10e4
 tune = 100
 
 b = array(0,c(reps,p)); b_now = covs
