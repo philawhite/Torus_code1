@@ -313,9 +313,9 @@ dd = rdist(dat_use$month)
 
 Y = c(dat_use$y)
 
-lm_temp = lm(y ~ is_land*scale(abs(lat)) + bs(lat,knots = c(0))*is_land,data = dat_use)
+lm_temp = lm(y ~ bs(lat,knots = c(0))*is_land,data = dat_use)
 
-lm_temp_month = lm(y ~ factor(month)*(is_land*scale(abs(lat)) + bs(lat,knots = c(0))*is_land),data = dat_use)
+lm_temp_month = lm(y ~ factor(month)*(bs(lat,knots = c(0))*is_land),data = dat_use)
 anova(lm_temp,lm_temp_month)
 
 dat_use$resid  = lm_temp_month$residuals
@@ -337,6 +337,7 @@ dat_use$resid  = lm_temp_month$residuals
 #   scale_color_viridis()
 # 
 #rm(dat_tot)
+
 
 X = cbind(1,model.matrix(lm_temp)[idx_train,-1])
 
